@@ -1,0 +1,29 @@
+<project name="dm" basedir="." default="all" >
+
+  <property name="jawin.class.path" value="D:\download\njawin11\newjawin\lib\jawin.jar"/>
+
+  <path id="dm.class.path">
+    <pathelement location="classes" />
+    <pathelement location="${jawin.class.path}" />
+  </path>
+
+  <target name="clean">
+    <delete dir="classes"/>
+    <delete dir="lib"/>
+  </target>
+
+  <target name="compile">
+    <mkdir dir="classes"/>
+    <javac srcdir="src" destdir="classes" classpathref="dm.class.path" />
+  </target>
+
+  <target name="jar" depends="compile">
+    <mkdir dir="lib"/>
+    <jar jarfile="lib/dm.jar">
+      <fileset dir="classes"/>
+    </jar>
+  </target>
+  <target name="all" depends="jar">
+  </target>
+
+</project>
